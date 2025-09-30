@@ -1,0 +1,282 @@
+/********************
+  Base & Theming
+*********************/
+:root {
+  --bg: #0b0d10;
+  --card: #12161b;
+  --text: #e8edf2;
+  --muted: #9fb0c3;
+  --accent: #66b0ff;
+  --accent-2: #8ad0ff;
+  --border: #1e2630;
+  --ring: rgba(102,176,255,.45);
+  --shadow: 0 10px 25px rgba(0,0,0,.35);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+
+  --container-w: 980px;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.6rem;
+  --space-7: 2rem;
+}
+
+/* Light mode automatik nëse përdoruesi e preferon */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f6f8fb;
+    --card: #ffffff;
+    --text: #0f1720;
+    --muted: #5b6b7d;
+    --accent: #1c74ff;
+    --accent-2: #4c92ff;
+    --border: #e6eef6;
+    --ring: rgba(28,116,255,.28);
+    --shadow: 0 10px 25px rgba(17,24,39,.08);
+  }
+}
+
+/********************
+  Reset i lehtë
+*********************/
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+}
+
+/********************
+  Layout i Përgjithshëm
+*********************/
+.container {
+  width: min(var(--container-w), 92vw);
+  margin: 0 auto;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover { color: var(--accent-2); }
+a:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/********************
+  Header
+*********************/
+.site-header {
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--bg) 90%, black 10%), var(--bg));
+}
+
+.header-inner {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: var(--space-5);
+  align-items: center;
+  padding: 2.2rem 0 1.6rem;
+   
+}
+
+.avatar img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.titleblock h1 {
+  margin: 0 0 .25rem;
+  font-size: clamp(1.6rem, 3vw, 2rem);
+}
+.subtitle {
+  margin: 0 0 var(--space-4);
+  color: var(--muted);
+  font-size: .98rem;
+}
+
+.social, .top-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem 1rem;
+  margin-bottom: .6rem;
+}
+
+.social a, .top-nav a {
+  color: var(--text);
+  text-decoration: none;
+  padding: .42rem .7rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: border-color .15s ease, color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.social a:hover, .top-nav a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+.top-nav a.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+/********************
+  Main & Cards
+*********************/
+main {
+  padding: var(--space-6) 0 2.4rem;
+  display: grid;
+  gap: var(--space-4);
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.2rem 1.2rem;
+  box-shadow: var(--shadow);
+}
+
+h2 {
+  margin: 0 0 .6rem;
+  font-size: 1.35rem;
+color: #00a1f1;
+}
+h3 {
+  margin: .8rem 0 .3rem;
+  font-size: 1.05rem;
+  color: var(--muted);
+  
+}
+
+/********************
+  Lists & Content
+*********************/
+.kv {
+  list-style: none;
+  padding: 0;
+  margin: .2rem 0 0;
+}
+.kv li { padding: .15rem 0; }
+
+.bullets { margin:0; list-style: square; }
+
+.item { margin: .6rem 0 1rem; }
+.item .meta { color: var(--muted); font-size: .95rem; }
+.item .org { color: var(--accent); font-weight: 600; }
+
+.pubs { margin: .4rem 0 0 1.2rem; }
+.pubs li { margin-bottom: .5rem; }
+.pub-title { font-weight: 600; }
+.pub-venue { color: var(--muted); }
+
+/********************
+  About: Dy kolona
+*********************/
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem 2rem;
+  align-items: start;
+  margin-top: .4rem;
+}
+.about-grid .about-col + .about-col {
+  border-left: 2px solid var(--border);
+  padding-left: 1.25rem;
+}
+
+/********************
+  Footer
+*********************/
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 1rem 0 2rem;
+  color: var(--muted);
+}
+.site-footer .container {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.footer-tagline { font-size: .95rem; }
+
+/********************
+  Utilities
+*********************/
+.muted { color: var(--muted); }
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
+}
+
+/********************
+  Responsivitet
+*********************/
+@media (max-width: 1024px) {
+  .header-inner { grid-template-columns: 120px 1fr; }
+}
+
+@media (max-width: 720px) {
+  .header-inner { grid-template-columns: 1fr; text-align: center; }
+  .avatar img { margin: 0 auto; }
+  .social, .top-nav { justify-content: center; }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-grid .about-col + .about-col {
+    border-left: none;
+    padding-left: 0;
+    margin-top: .5rem;
+  }
+}
+
+/********************
+  Preferenca për reduktim animacionesh
+*********************/
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .social a, .top-nav a { transition: none; }
+}
+
+/********************
+  Print (minimum i pastër)
+*********************/
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+  }
+  .site-header, .site-footer { box-shadow: none; background: #fff; }
+  .card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+    break-inside: avoid;
+  }
+  a { color: #0645ad; text-decoration: underline; }
+}
+
+
+/*.top-nav a.active { border-color: var(--accent); color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }*/
